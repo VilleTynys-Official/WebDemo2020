@@ -10,4 +10,10 @@
 
 
 
+  <ItemGroup>
+    <None Remove="Pictures\ha1flosse-delphin-delfin-dolphin.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pictures\" />
+  </ItemGroup>
 </Project>
