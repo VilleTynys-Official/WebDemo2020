@@ -1,4 +1,13 @@
-# WebDemo2020
-Janin esimerkkien pohjalta tehty web.
+# TurkuWebDemo2020Kevat
 
-Villen testailua..
+Code Bootcamp -koulutusohjelman demo-sovellus.
+
+Käytetyt tekniikat:
+
+  - C# ja .NET
+  - ASP.NET (backend)
+  - SQL Server -tietokanta
+  - React (front)
+  - JavaScript/TypeScript
+  - HTML, CSS
+  - Azure-pilvipalveluympäristö.

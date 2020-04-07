@@ -1,0 +1,59 @@
+﻿@model List<AspNetWebDemo.Models.Asiakas>
+@{
+    ViewData["Title"] = "UusiSivu";
+}
+@section Scripts {
+    <script>
+        $(function () {
+            // sivun alustus
+            console.log("Sivun alustus.");
+
+            $("#haeAsiakasNappi").click(function () {
+                alert("Moi moi!");
+            });
+        });
+    </script>
+}
+
+<h1>Tämä on uusi sivu</h1>
+
+<p>Jee, toimii!</p>
+
+<input class="form-control w-25" type="text" />
+<button id="haeAsiakasNappi" class="btn btn-@ViewBag.NapinVäri mt-2">Hae asiakas</button>
+
+<p>&nbsp;</p>
+
+@if (ViewBag.NäytäLista)
+{
+    <ul>
+        @{
+            for (int i = 0; i < 10; i++)
+            {
+                <li>Asia @i</li>
+            }
+        }
+    </ul>
+}
+
+<table class="table table-striped w-50">
+    <thead>
+        <tr>
+            <th>Asiakas-id</th>
+            <th>Nimi</th>
+            <th>Sähköposti</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AspNetWebDemo.Models.Asiakas asiakas in Model)
+        {
+            <tr>
+                <td>@asiakas.AsiakasId</td>
+                <td>@asiakas.AsiakkaanNimi</td>
+                <td>@asiakas.Sähköpostiosoite</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<img src="https://docs.microsoft.com/en-us/media/hubs/aspnet/core-overview-1.svg">
