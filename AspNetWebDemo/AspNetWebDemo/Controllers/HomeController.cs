@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AspNetWebDemo.Models;
+using AspNetWebDemo.Tietokanta;
 
 namespace AspNetWebDemo.Controllers
 {
@@ -44,6 +45,8 @@ namespace AspNetWebDemo.Controllers
             return DateTime.Now.ToString();
         }
 
+
+
         public IActionResult UusiSivu()
         {
             List<Asiakas> asiakkaat = new List<Asiakas>()
@@ -70,6 +73,16 @@ namespace AspNetWebDemo.Controllers
 
             ViewBag.NapinVäri = "danger";
             ViewBag.NäytäLista = false;
+
+            return View(asiakkaat);
+        }
+
+
+
+        public IActionResult AsiakasListaus()
+        {
+            NorthwindContext konteksti = new NorthwindContext();
+            List<Customers> asiakkaat = konteksti.Customers.ToList();       //hyödynnetään tietokanta-olioita. Miinuksena muistinkulutus..
 
             return View(asiakkaat);
         }
