@@ -80,26 +80,26 @@ namespace AspNetWebDemo.Controllers
 
 
         //hyödynnetään tietokanta-olioita. Miinuksena muistinkulutus..     
-        public IActionResult AsiakasListaus()
+        public IActionResult AsiakasListaus(string id)
         {
             NorthwindContext konteksti = new NorthwindContext();
+            List<Customers> asiakkaat;
+
+            if (string.IsNullOrEmpty(id))
+            {
+                asiakkaat = konteksti.Customers.ToList();               // jos id on tyhjä hakee kaikki Customerit listaksi
+            }
+            else
+            {
+                string maa = id;
+                asiakkaat = (from a in konteksti.Customers              // jos id ei ole tyhjä, haetaan asiakkaat joiden id täsmää.
+                             where a.Country == maa
+                             select a).ToList();
+            };
 
 
-            //haetaan kaikki asiakkaat
-            //List<Customers> asiakkaat = konteksti.Customers.ToList();
-
-
-            //esimerkki LINQ:lla: QUERY SYNTAX:
-            List<Customers> asiakkaat = (from a in konteksti.Customers
-                                        where a.Country == "Finland"
-                                        select a).ToList();                     //mitä ikinä saadaankaan niin muutetaan listaksi (helppo kuljettaa näkymään)
-
-            //esimerkki LINQ:lla: METHOD SYNTAX:
-            List<Customers> asiakkaat2 = konteksti.Customers.Where(             //hyödynnetään lambda lauseita yms., käytännössä sama kuin yläpuolella.
-                a => a.Country == "Finland").ToList();
 
             return View(asiakkaat);
-            //return View(asiakkaat2);
         }
     }
 }
